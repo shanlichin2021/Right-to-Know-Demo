@@ -70,14 +70,6 @@ cd Right-to-Know-Demo
    pip install -r requirements.txt
    ```
 
-4. Start the Flask backend:
-
-   ```bash
-   python app.py
-   ```
-
-   The backend will be available at `http://127.0.0.1:5000`.
-
 ---
 
 ### Frontend Setup
@@ -93,14 +85,6 @@ cd Right-to-Know-Demo
    ```bash
    npm install
    ```
-
-3. Start the React frontend:
-
-   ```bash
-   npm start
-   ```
-
-   The frontend will be available at `http://localhost:3000`.
 
 ---
 
