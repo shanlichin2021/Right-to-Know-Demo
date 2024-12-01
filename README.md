@@ -46,7 +46,7 @@ Clone the repository to your local machine:
 
 ```bash
 git clone <repository_url>
-cd Right-to-Know
+cd Right-to-Know-Demo
 ```
 
 ### Backend Setup
@@ -57,7 +57,7 @@ cd Right-to-Know
    cd backend
    ```
 
-2. Create a Python virtual environment (optional but recommended):
+2. (Optional) Create a Python virtual environment:
 
    ```bash
    python -m venv venv
@@ -70,13 +70,7 @@ cd Right-to-Know
    pip install -r requirements.txt
    ```
 
-4. Verify the `O_SERVER` variable in `app.py` points to the correct Llama API endpoint:
-
-   ```python
-   O_SERVER = "https://cot6930-ollama-serve.kub.hpc.fau.edu/api/generate"
-   ```
-
-5. Start the Flask backend:
+4. Start the Flask backend:
 
    ```bash
    python app.py
@@ -218,7 +212,3 @@ Right-to-Know/
 ## License
 
 This project is licensed under the MIT License. Feel free to use and modify it for your own purposes.
-
-```
-
-```
