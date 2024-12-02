@@ -4,7 +4,7 @@ import requests
 import logging
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS to allow React frontend communication
+CORS(app)  # Enable CORS for frontend-backend communication
 
 # API configuration
 O_SERVER = "https://cot6930-ollama-serve.kub.hpc.fau.edu/api/generate"
