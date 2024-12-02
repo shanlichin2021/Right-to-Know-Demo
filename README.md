@@ -11,10 +11,9 @@ The **Right to Know Framework** is a simple, interactive web application that al
    - [Backend Setup](#backend-setup)
    - [Frontend Setup](#frontend-setup)
 4. [Running the Application](#running-the-application)
-5. [Project Structure](#project-structure)
-6. [Usage](#usage)
-7. [Troubleshooting](#troubleshooting)
-8. [License](#license)
+5. [Usage](#usage)
+6. [Troubleshooting](#troubleshooting)
+7. [License](#license)
 
 ---
 
@@ -101,31 +100,10 @@ cd Right-to-Know-Demo
 
    - Navigate to the `frontend` directory and run:
      ```bash
-     npm start
+     npm run dev
      ```
 
-3. Open your browser and navigate to `http://localhost:3000` to access the application.
-
----
-
-## Project Structure
-
-```
-Right-to-Know/
-│
-├── backend/                  # Flask backend
-│   ├── app.py                # Main Flask application
-│   ├── requirements.txt      # Python dependencies
-│
-├── frontend/                 # React frontend
-│   ├── public/               # Static public files
-│   ├── src/                  # React source files
-│   │   ├── App.js            # Main React component
-│   │   ├── App.css           # Styling for the chat interface
-│   ├── package.json          # Frontend dependencies
-│
-├── README.md                 # Project documentation
-```
+3. Open your browser and navigate to `http://localhost:5173/` to access the application.
 
 ---
 
