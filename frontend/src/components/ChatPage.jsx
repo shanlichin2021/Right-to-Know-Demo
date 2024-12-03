@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import axios from "axios";
 import { ChatContext } from "./ChatContext";
 import "./ChatPage.css";
-import { HashLoader } from "react-spinners"; // Import the GridLoader from react-spinners
+import { HashLoader } from "react-spinners"; // Import the spinner
 
 const formatText = (text) => {
   // Replace **bold** with <strong>bold</strong>
@@ -12,7 +12,7 @@ const formatText = (text) => {
 };
 
 const ChatPage = () => {
-  const { messages, addMessage } = useContext(ChatContext);
+  const { messages, addMessage } = useContext(ChatContext); // Chat context to store messages
   const [error, setError] = useState("");
   const [currentMessage, setCurrentMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false); // Loading state for spinner
@@ -20,18 +20,23 @@ const ChatPage = () => {
   const handleSendMessage = async () => {
     if (!currentMessage.trim()) return;
 
+    // Add the user's message to the chat context
     const userEntry = { sender: "user", text: currentMessage };
     addMessage(userEntry);
-    setCurrentMessage(""); // Clear input field
-    setIsLoading(true); // Show the spinner
+    setCurrentMessage(""); // Clear the input field
+    setIsLoading(true); // Show the spinner while waiting for AI response
 
     try {
+      // Send chat history and current message to the backend
       const response = await axios.post("http://127.0.0.1:5000/api/chat", {
-        message: currentMessage,
+        history: messages, // Include all previous messages
+        message: currentMessage, // Current user message
       });
+
+      // Add AI response to the chat context
       const aiEntry = { sender: "ai", text: response.data.reply };
       addMessage(aiEntry);
-      setError("");
+      setError(""); // Clear any errors
     } catch (err) {
       console.error("Error:", err);
       setError("Unable to fetch a response. Please try again.");

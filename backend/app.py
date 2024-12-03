@@ -15,18 +15,26 @@ logging.basicConfig(level=logging.DEBUG)
 @app.route("/api/chat", methods=["POST"])
 def chat():
     try:
-        # Get the user's message from the request
+        # Get the user's message and chat history from the request
         user_message = request.json.get("message")
+        history = request.json.get("history", [])
         if not user_message:
             app.logger.error("No message provided in the request.")
             return jsonify({"error": "No message provided"}), 400
 
         app.logger.debug(f"Received message: {user_message}")
+        app.logger.debug(f"Chat history: {history}")
+
+        # Combine history into a single prompt
+        context = "\n".join([f"{msg['sender']}: {msg['text']}" for msg in history])
+        full_prompt = f"{context}\nuser: {user_message}"
+
+        app.logger.debug(f"Full prompt sent to the API: {full_prompt}")
 
         # Prepare the payload for the Llama API
         payload = {
             "model": "llama3.2",
-            "prompt": user_message,
+            "prompt": full_prompt,
             "stream": False
         }
         headers = {"Content-Type": "application/json"}
