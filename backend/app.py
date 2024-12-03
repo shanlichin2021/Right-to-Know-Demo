@@ -1,12 +1,14 @@
 import requests
+import time
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from duckduckgo_search import DDGS  # Import DDGS for DuckDuckGo search
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for frontend-backend communication
 
 OLLAMA_SERVER = "https://cot6930-ollama-serve.kub.hpc.fau.edu/api/generate"
-DUCKDUCKGO_API_URL = "https://api.duckduckgo.com/"
+
 
 @app.route("/api/chat", methods=["POST"])
 def chat():
@@ -19,7 +21,7 @@ def chat():
 
     # Combine chat history into a single prompt
     context = "\n".join([f"{msg['sender']}: {msg['text']}" for msg in history])
-    full_prompt = f"{context}\n{message}"
+    full_prompt = f"{context}\nuser: {message}"
 
     # Check if DuckDuckGo search is needed
     if "who is" in message.lower() or "what is" in message.lower():
@@ -27,7 +29,7 @@ def chat():
         external_info = fetch_duckduckgo_info(search_query)
 
         if external_info:
-            full_prompt = f"{full_prompt}\n\nDuckDuckGo Information: {external_info}"
+            full_prompt = f"{full_prompt}\n\nDuckDuckGo Information:\n{external_info}"
 
     try:
         # Send prompt to the Llama model
@@ -37,22 +39,24 @@ def chat():
         return jsonify({"error": str(e)}), 500
 
 
-def fetch_duckduckgo_info(query):
-    """Fetch information from DuckDuckGo Instant Answer API."""
-    params = {
-        "q": query,
-        "format": "json",
-        "no_redirect": 1,
-        "no_html": 1,
-    }
+def fetch_duckduckgo_info(query, max_results=3):
+    """Fetch information from DuckDuckGo using the DDGS library."""
     try:
-        response = requests.get(DUCKDUCKGO_API_URL, params=params)
-        if response.status_code == 200:
-            data = response.json()
-            return data.get("AbstractText") or data.get("Heading")
+        time.sleep(1)  # Throttle requests by adding a delay
+        with DDGS() as ddgs:
+            # Adjust parameters and headers to avoid being blocked
+            results = ddgs.text(
+                query, region="wt-wt", safesearch="Moderate", timelimit=None
+            )
+            result_list = []
+            for result in results:
+                result_list.append(f"- {result['title']}: {result['href']}")
+                if len(result_list) >= max_results:
+                    break
+            return "\n".join(result_list) if result_list else "No relevant search results found."
     except Exception as e:
         print(f"Error fetching DuckDuckGo information: {e}")
-    return None
+        return "Unable to fetch search results at this time. Proceeding with AI-generated information."
 
 
 def generate_llama_response(prompt):
@@ -72,6 +76,7 @@ def generate_llama_response(prompt):
     except Exception as e:
         print(f"Error communicating with Llama API: {e}")
         raise
+
 
 if __name__ == "__main__":
     app.run(debug=True)
