@@ -5,22 +5,27 @@ import ChatPage from "./components/ChatPage";
 import AboutPage from "./components/AboutPage";
 import { ChatProvider } from "./components/ChatContext";
 import FormPage from "./components/FormPage";
+import { ModelEndpointProvider } from "./components/ModelEndpointContext";
+import LandingPage from "./components/LandingPage";
 
 const App = () => {
   return (
     <ChatProvider>
-      <Router>
-        <div className="h-screen flex flex-col">
-          <TopBar />
-          <div className="flex-1 bg-gray-200 p-6 mt-16">
-            <Routes>
-              <Route path="/" element={<ChatPage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/form" element={<FormPage />} />
-            </Routes>
+      <ModelEndpointProvider>
+        <Router>
+          <div className="h-screen flex flex-col">
+            <TopBar />
+            <div className="flex-1 bg-gray-200 p-6 mt-16">
+              <Routes>
+                <Route path="/" element={<LandingPage />} />
+                <Route path="/form" element={<FormPage />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/chat" element={<ChatPage />} />
+              </Routes>
+            </div>
           </div>
-        </div>
-      </Router>
+        </Router>
+      </ModelEndpointProvider>
     </ChatProvider>
   );
 };

@@ -1,11 +1,13 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
 import { ChatContext } from "./ChatContext";
+import { ModelEndpointContext } from "./ModelEndpointContext";
 import { HashLoader } from "react-spinners";
 import ChatSidebar from "./ChatSidebar";
 
 const ChatPage = () => {
   const { messages, addMessage, saveChat } = useContext(ChatContext);
+  const { selectedEndpoint } = useContext(ModelEndpointContext);
   const [currentMessage, setCurrentMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -21,6 +23,7 @@ const ChatPage = () => {
       const response = await axios.post("http://127.0.0.1:5000/api/chat", {
         history: messages,
         message: currentMessage,
+        modelUrl: selectedEndpoint ? selectedEndpoint.url : "",
       });
 
       const aiEntry = { sender: "ai", text: response.data.reply };
