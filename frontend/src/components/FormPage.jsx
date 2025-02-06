@@ -44,13 +44,10 @@ const FormPage = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post(
-        "http://127.0.0.1:5000/api/interrogate",
-        {
-          ...formData,
-          modelUrl: selectedEndpoint ? selectedEndpoint.url : "",
-        }
-      );
+      const response = await axios.post("http://127.0.0.1:5000/api/generate", {
+        ...formData,
+        modelUrl: selectedEndpoint ? selectedEndpoint.url : "",
+      });
       if (response.status === 200) {
         setAiResponse(response.data.reply);
       }
