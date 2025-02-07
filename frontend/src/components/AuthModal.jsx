@@ -27,7 +27,6 @@ const AuthModal = () => {
         transition={{ duration: 1 }}
       >
         <div className="bg-[#181818] border border-[#2a2a2a] text-white p-8 rounded shadow-lg max-w-md w-full">
-          <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
           {error && <p className="text-red-500 mb-4 text-center">{error}</p>}
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
@@ -40,7 +39,7 @@ const AuthModal = () => {
                 required
               />
             </div>
-            <div className="mb-4">
+            <div className="mb-6">
               <input
                 type="password"
                 placeholder="Password"
