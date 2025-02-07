@@ -40,9 +40,9 @@ const ChatPage = () => {
   };
 
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex flex-1 p-4 h-screen bg-gray-100 ">
       <ChatSidebar />
-      <div className="flex flex-col flex-1 p-4">
+      <div className="flex flex-col flex-1 pt-14">
         <div className="flex-1 overflow-auto bg-white shadow-md rounded-lg p-4">
           {messages.map((msg, index) => (
             <div
