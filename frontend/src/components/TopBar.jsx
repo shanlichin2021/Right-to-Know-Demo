@@ -45,7 +45,7 @@ const TopBar = () => {
   };
 
   return (
-    <div className="fixed top-0 left-0 w-full h-16 flex items-center bg-darker text-gray-400 px-6 shadow-lg z-50 bg-[#181818]">
+    <div className="fixed top-0 left-0 w-full h-16 flex items-center border-b border-[#2a2a2a] bg-darker text-gray-400 px-6 shadow-lg z-50 bg-[#181818]">
       <div className="flex space-x-6">
         <Link to="/" className="hover:text-white transition" title="Home">
           <RiHome9Line size={24} />

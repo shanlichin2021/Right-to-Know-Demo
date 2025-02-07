@@ -23,7 +23,7 @@ const LandingPage = () => {
             words={[
               "'Right To Know' is a project that audits whether AI models store personal data from their training. Our mission is to empower you with the right to know if your personal information has been inadvertently included in AI training datasets. Through a step-by-step process, we aim to increase the transparency of LLMs and help protect your privacy.",
             ]}
-            typeSpeed={30}
+            typeSpeed={14}
             deleteSpeed={50}
             delaySpeed={2000}
             cursor
