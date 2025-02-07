@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 const LandingPage = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-8">
-      <h1 className="text-4xl font-bold mb-4">Right To Know</h1>
-      <p className="text-lg text-center mb-8">
+      <h1 className="text-4xl font-bold mb-8">Right To Know</h1>
+      <p className="text-lg text-center mb-10">
         This project audits whether AI models store personal data from their
         training. Our mission is to empower you with the right to know if your
         personal information has been inadvertently included in AI training

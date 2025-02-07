@@ -15,7 +15,7 @@ const App = () => {
         <Router>
           <div className="h-screen flex flex-col">
             <TopBar />
-            <div className="flex-1 bg-gray-200 p-6 mt-16">
+            <div className="flex-1">
               <Routes>
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/form" element={<FormPage />} />
