@@ -94,11 +94,12 @@ const FormPage = () => {
         {currentStep === 0 && (
           <div>
             <h1 className="text-3xl font-bold mb-4">Welcome!</h1>
-            <p>
+            <p className="mb-2">
               This project audits whether AI models store personal data from
-              their training. Help us, help you by providing some information.
+              their training. Help us help you by providing a little bit of
+              about yourself information.
             </p>
-            <p className="mb-6">Click next to begin.</p>
+            <p className="mb-4">Click next to begin.</p>
             <button
               onClick={() => changeStep(1)}
               className="bg-[#5c5e49] text-white px-4 py-2 rounded hover:bg-[#22332d] transition"
