@@ -186,3 +186,7 @@ cd Right-to-Know-Demo
 ## License
 
 This project is licensed under the MIT License. Feel free to use and modify it for your own purposes.
+
+
+
+Testing llama deepseek to run locally run ollama pull deepseek-r1 in powershell wait for download then use ollama list to check if it installed and you should be set
