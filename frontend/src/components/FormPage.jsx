@@ -180,7 +180,7 @@ const FormPage = () => {
 
         {currentStep === 3 && (
           <div>
-            <h2 className="text-2xl font-semibold mb-4">Step 3: AI Response</h2>
+            <h2 className="text-2xl font-semibold mb-4">AI Response:</h2>
             {loading ? (
               <div className="flex justify-center my-4">
                 <HashLoader size={30} color="#007bff" />
