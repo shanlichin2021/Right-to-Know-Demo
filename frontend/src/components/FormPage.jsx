@@ -68,7 +68,7 @@ const FormPage = () => {
         }`}
       >
         {/* Only render reset button if not on the final step */}
-        {currentStep !== 3 && (
+        {currentStep !== 0 && currentStep !== 3 && (
           <button
             onClick={resetForm}
             className="absolute top-4 right-4 flex items-center justify-center p-2 bg-gray-200 rounded-full hover:bg-gray-300 transition "
