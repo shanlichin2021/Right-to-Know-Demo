@@ -40,10 +40,10 @@ const ChatPage = () => {
   };
 
   return (
-    <div className="flex flex-1 p-4 h-screen bg-gray-100 ">
+    <div className="flex flex-1 p-4 h-screen bg-[#0f0f0f] ">
       <ChatSidebar />
       <div className="flex flex-col flex-1 pt-14">
-        <div className="flex-1 overflow-auto bg-white shadow-md rounded-lg p-4">
+        <div className="flex-1 overflow-auto bg-[#181818] shadow-md rounded-lg p-4">
           {messages.map((msg, index) => (
             <div
               key={index}
@@ -69,17 +69,17 @@ const ChatPage = () => {
           )}
         </div>
 
-        <div className="flex items-center bg-white shadow-md p-3 rounded-lg mt-2">
+        <div className="flex items-center bg-[#181818] shadow-md p-3 rounded-lg mt-2">
           <input
             type="text"
-            className="flex-1 p-2 border rounded-lg"
+            className="flex-1 p-2 border border-[#2a2a2a] text-white rounded-lg bg-[#0f0f0f]"
             placeholder="Type your message..."
             value={currentMessage}
             onChange={(e) => setCurrentMessage(e.target.value)}
             onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
           />
           <button
-            className="ml-2 px-4 py-2 bg-blue-500 text-white rounded-lg"
+            className="ml-2 px-4 py-2 bg-[#5c5e49] text-white rounded-lg"
             onClick={handleSendMessage}
           >
             Send

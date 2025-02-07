@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import { HashLoader } from "react-spinners";
 import { ModelEndpointContext } from "./ModelEndpointContext";
+import { Typewriter } from "react-simple-typewriter";
 
 const FormPage = () => {
   // currentStep: 0 = landing, 1 = personal info, 2 = field of work, 3 = AI response.
@@ -60,9 +61,9 @@ const FormPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-[#0f0f0f] text-white p-4 ">
       <div
-        className={`relative w-full max-w-xl bg-white p-8 rounded-lg shadow-md transition-opacity duration-500 ${
+        className={`relative w-full max-w-xl bg-[#181818] border border-[#2a2a2a] p-8 rounded-lg shadow-md transition-opacity duration-500 ${
           fade ? "opacity-0" : "opacity-100"
         }`}
       >
@@ -70,7 +71,7 @@ const FormPage = () => {
         {currentStep !== 3 && (
           <button
             onClick={resetForm}
-            className="absolute top-4 right-4 flex items-center justify-center p-2 bg-gray-200 rounded-full hover:bg-gray-300 transition"
+            className="absolute top-4 right-4 flex items-center justify-center p-2 bg-gray-200 rounded-full hover:bg-gray-300 transition "
             title="Reset Form"
           >
             <svg
@@ -92,14 +93,14 @@ const FormPage = () => {
 
         {currentStep === 0 && (
           <div>
-            <h1 className="text-3xl font-bold mb-8">Welcome!</h1>
+            <h1 className="text-3xl font-bold mb-6">Welcome!</h1>
             <p className="mb-6">
               This project audits whether AI models store personal data from
               their training. Click next to begin.
             </p>
             <button
               onClick={() => changeStep(1)}
-              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+              className="bg-[#5c5e49] text-white px-4 py-2 rounded hover:bg-[#22332d] transition"
             >
               Next
             </button>
@@ -111,23 +112,27 @@ const FormPage = () => {
             <h2 className="text-2xl font-semibold mb-4">
               Step 1: Personal Information
             </h2>
+            <p className="mb-6">
+              To figure out whether this model has information on you, please
+              provide your first and last name, email is optional.
+            </p>
             <form onSubmit={handleStep1Submit}>
-              <div className="mb-4">
-                <label className="block text-gray-700">Name:</label>
+              <div className="mb-4 opacity-50">
                 <input
                   type="text"
                   name="name"
+                  placeholder="Name"
                   value={formData.name}
                   onChange={handleChange}
                   className="w-full p-2 border rounded-lg focus:ring focus:ring-blue-300"
                   required
                 />
               </div>
-              <div className="mb-4">
-                <label className="block text-gray-700">Email (optional):</label>
+              <div className="mb-4 opacity-50">
                 <input
                   type="email"
                   name="email"
+                  placeholder="example@email.com"
                   value={formData.email}
                   onChange={handleChange}
                   className="w-full p-2 border rounded-lg focus:ring focus:ring-blue-300"
@@ -135,7 +140,7 @@ const FormPage = () => {
               </div>
               <button
                 type="submit"
-                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+                className="bg-[#5c5e49] text-white px-4 py-2 rounded hover:bg-[#22332d] transition"
               >
                 Next
               </button>
@@ -151,11 +156,11 @@ const FormPage = () => {
               interrogation prompt.
             </p>
             <form onSubmit={handleStep2Submit}>
-              <div className="mb-4">
-                <label className="block text-gray-700">Occupation:</label>
+              <div className="mb-4 opacity-50">
                 <input
                   type="text"
                   name="field"
+                  placeholder="Occupation"
                   value={formData.field}
                   onChange={handleChange}
                   className="w-full p-2 border rounded-lg focus:ring focus:ring-blue-300"
@@ -165,7 +170,7 @@ const FormPage = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition flex items-center justify-center"
+                className="bg-[#5c5e49] text-white px-4 py-2 rounded hover:bg-[#22332d] transition flex items-center justify-center"
               >
                 {loading ? <HashLoader size={20} color="#fff" /> : "Submit"}
               </button>
@@ -181,7 +186,16 @@ const FormPage = () => {
                 <HashLoader size={30} color="#007bff" />
               </div>
             ) : (
-              <p className="text-gray-800">{aiResponse}</p>
+              <p className="text-white">
+                <Typewriter
+                  words={[aiResponse]}
+                  typeSpeed={30}
+                  deleteSpeed={50}
+                  delaySpeed={2000}
+                  cursor
+                  cursorStyle="|"
+                />
+              </p>
             )}
             <button
               onClick={resetForm}

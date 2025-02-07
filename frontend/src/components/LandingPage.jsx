@@ -5,7 +5,7 @@ import { Typewriter } from "react-simple-typewriter";
 
 const LandingPage = () => {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-8">
+    <div className="min-h-screen flex flex-col items-center justify-center text-white bg-[#0f0f0f] p-8">
       {/* Framer Motion fade-in effect */}
       <motion.h1
         className="text-4xl font-bold mb-8"
@@ -21,7 +21,7 @@ const LandingPage = () => {
         <p className="text-lg text-center mb-8">
           <Typewriter
             words={[
-              "'Right To Know' is a project that audits whether AI models store personal data from their training. Our mission is to empower you with the right to know if your personal information has been inadvertently included in AI training datasets. Through a series of targeted interrogations and investigations, we aim to increase the transparency of LLMs and protect your privacy.",
+              "'Right To Know' is a project that audits whether AI models store personal data from their training. Our mission is to empower you with the right to know if your personal information has been inadvertently included in AI training datasets. Through a step-by-step process, we aim to increase the transparency of LLMs and help protect your privacy.",
             ]}
             typeSpeed={30}
             deleteSpeed={50}
@@ -32,7 +32,7 @@ const LandingPage = () => {
         </p>
 
         <Link to="/form">
-          <button className="bg-blue-500 text-white px-6 py-3 rounded hover:bg-blue-600 transition">
+          <button className="bg-[#5c5e49] text-white px-6 py-3 rounded hover:bg-[#22332d] transition">
             Get Started
           </button>
         </Link>

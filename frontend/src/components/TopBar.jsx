@@ -45,7 +45,7 @@ const TopBar = () => {
   };
 
   return (
-    <div className="fixed top-0 left-0 w-full h-16 flex items-center bg-darker text-gray-400 px-6 shadow-lg z-50 bg-gray-800">
+    <div className="fixed top-0 left-0 w-full h-16 flex items-center bg-darker text-gray-400 px-6 shadow-lg z-50 bg-[#181818]">
       <div className="flex space-x-6">
         <Link to="/" className="hover:text-white transition" title="Home">
           <RiHome9Line size={24} />
@@ -66,7 +66,7 @@ const TopBar = () => {
         <select
           value={selectedEndpoint ? selectedEndpoint.id : ""}
           onChange={(e) => selectEndpoint(Number(e.target.value))}
-          className="bg-gray-700 text-white p-2 rounded"
+          className=" bg-[#0f0f0f] border border-[#2a2a2a] text-white p-2 rounded"
         >
           {endpoints.map((ep) => (
             <option key={ep.id} value={ep.id}>
@@ -76,7 +76,7 @@ const TopBar = () => {
         </select>
         <button
           onClick={() => setIsManaging(!isManaging)}
-          className="ml-2 bg-gray-700 p-2 rounded text-white"
+          className="ml-2 bg-[#0f0f0f] border border-[#2a2a2a] p-2 rounded text-white"
           title="Manage Endpoints"
         >
           Manage

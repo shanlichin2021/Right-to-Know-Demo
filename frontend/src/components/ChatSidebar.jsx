@@ -11,7 +11,7 @@ const ChatSidebar = () => {
     <div className="relative">
       {/* Sidebar */}
       <div
-        className={`fixed left-0 top-0 h-full w-72 bg-gray-800 text-white transform ${
+        className={`fixed left-0 top-0 h-full w-72 bg-[#181818] text-white transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 shadow-lg z-50`}
       >
@@ -23,7 +23,7 @@ const ChatSidebar = () => {
             <input
               type="text"
               placeholder="Search..."
-              className="w-full p-2 pl-8 text-black rounded back"
+              className="w-full p-2 pl-8 text-black rounded back text-white bg-[#0f0f0f] border border-[#2a2a2a]"
               value={searchChat}
               onChange={(e) => setSearchChat(e.target.value)}
             />
@@ -51,7 +51,7 @@ const ChatSidebar = () => {
       {/* Toggle Button styled like a file tab */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed top-20 left-0 transform transition-transform duration-300 z-50 bg-blue-500 text-white shadow-lg rounded-tr-lg rounded-br-lg px-4 py-2 ${
+        className={`fixed top-20 left-0 transform transition-transform duration-300 z-50 bg-[#5c5e49] text-white shadow-lg rounded-tr-lg rounded-br-lg px-4 py-2 ${
           isOpen ? "translate-x-72" : "translate-x-0"
         }`}
       >
