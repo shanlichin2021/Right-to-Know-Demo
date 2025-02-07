@@ -54,8 +54,8 @@ const ChatPage = () => {
               <div
                 className={`px-4 py-2 rounded-lg ${
                   msg.sender === "user"
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-300 text-black"
+                    ? "bg-[#5c5e49] text-white"
+                    : "bg-gray-300 text-black font-mono"
                 }`}
               >
                 {msg.text}
@@ -69,7 +69,7 @@ const ChatPage = () => {
           )}
         </div>
 
-        <div className="flex items-center bg-[#181818] shadow-md p-3 rounded-lg mt-2">
+        <div className="flex items-center shadow-md p-3  mt-2">
           <input
             type="text"
             className="flex-1 p-2 border border-[#2a2a2a] text-white rounded-lg bg-[#0f0f0f]"

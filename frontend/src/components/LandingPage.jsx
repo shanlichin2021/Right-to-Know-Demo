@@ -5,7 +5,7 @@ import { Typewriter } from "react-simple-typewriter";
 
 const LandingPage = () => {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center text-white bg-[#0f0f0f] p-8">
+    <div className="min-h-screen flex flex-col items-center justify-center text-white bg-[#0f0f0f] p-8 ">
       {/* Framer Motion fade-in effect */}
       <motion.h1
         className="text-4xl font-bold mb-8"
@@ -18,7 +18,7 @@ const LandingPage = () => {
 
       <div className="flex flex-col items-center justify-center md:w-1/2">
         {/* Typewriter effect for the description */}
-        <p className="text-lg text-center mb-8">
+        <p className="text-lg text-center mb-8 font-mono">
           <Typewriter
             words={[
               "'Right To Know' is a project that audits whether AI models store personal data from their training. Our mission is to empower you with the right to know if your personal information has been inadvertently included in AI training datasets. Through a step-by-step process, we aim to increase the transparency of LLMs and help protect your privacy.",

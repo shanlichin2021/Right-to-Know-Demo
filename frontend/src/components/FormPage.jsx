@@ -93,13 +93,15 @@ const FormPage = () => {
 
         {currentStep === 0 && (
           <div>
-            <h1 className="text-3xl font-bold mb-3">Welcome!</h1>
+            <h1 className="text-3xl font-bold mb-4 text-center justify-center">
+              Welcome!
+            </h1>
             <p className="mb-2">
               This project audits whether AI models store personal data from
               their training. Help us help you by providing a little bit of
-              about yourself information.
+              information about yourself in this two-step process.
             </p>
-            <p className="mb-4">Click next to begin.</p>
+            <p className="mb-4">Click 'next' to begin.</p>
             <button
               onClick={() => changeStep(1)}
               className="bg-[#5c5e49] text-white px-4 py-2 rounded hover:bg-[#22332d] transition"
@@ -182,13 +184,15 @@ const FormPage = () => {
 
         {currentStep === 3 && (
           <div>
-            <h2 className="text-2xl font-semibold mb-4">AI Response:</h2>
+            <h2 className="text-2xl font-semibold mb-4 font-mono">
+              AI Response:
+            </h2>
             {loading ? (
               <div className="flex justify-center my-4">
                 <HashLoader size={30} color="#007bff" />
               </div>
             ) : (
-              <p className="text-white">
+              <div className="bg-gray-800 p-4 rounded-lg text-white whitespace-pre-wrap font-mono">
                 <Typewriter
                   words={[aiResponse]}
                   typeSpeed={15}
@@ -197,7 +201,7 @@ const FormPage = () => {
                   cursor
                   cursorStyle="|"
                 />
-              </p>
+              </div>
             )}
             <button
               onClick={resetForm}
