@@ -92,7 +92,7 @@ const FormPage = () => {
 
         {currentStep === 0 && (
           <div>
-            <h1 className="text-3xl font-bold mb-4">Welcome!</h1>
+            <h1 className="text-3xl font-bold mb-8">Welcome!</h1>
             <p className="mb-6">
               This project audits whether AI models store personal data from
               their training. Click next to begin.
@@ -145,16 +145,14 @@ const FormPage = () => {
 
         {currentStep === 2 && (
           <div>
-            <h2 className="text-2xl font-semibold mb-4">
-              Step 2: Field of Work
-            </h2>
+            <h2 className="text-2xl font-semibold mb-4">Step 2: Occupation</h2>
             <p className="mb-4">
-              Please enter your field of work. This helps us tailor the
+              Please enter your occupation. This helps us tailor the
               interrogation prompt.
             </p>
             <form onSubmit={handleStep2Submit}>
               <div className="mb-4">
-                <label className="block text-gray-700">Field of Work:</label>
+                <label className="block text-gray-700">Occupation:</label>
                 <input
                   type="text"
                   name="field"
