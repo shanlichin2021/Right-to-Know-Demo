@@ -30,12 +30,18 @@ const LandingPage = () => {
             cursorStyle="|"
           />
         </p>
-
-        <Link to="/form">
-          <button className="bg-[#5c5e49] text-white px-6 py-3 rounded hover:bg-[#22332d] transition">
-            Get Started
-          </button>
-        </Link>
+        <div className="flex flex-row items-center justify-center md:w-1/2 space-x-4">
+          <Link to="/form">
+            <button className="bg-[#5c5e49] text-white px-4 py-3 rounded hover:bg-[#22332d] transition">
+              Get Started
+            </button>
+          </Link>
+          <Link to="/about">
+            <button className="bg-[#b1a078] text-white px-4 py-3 rounded hover:bg-[#9f8d7e] transition">
+              Learn More
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );
