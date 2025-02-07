@@ -166,10 +166,22 @@ cd Right-to-Know-Demo
 
 - Ensure the Flask app is running:
   ```bash
-  python app.py
+   python app.py
   ```
 
 ---
+
+### 6. Plugins used:
+
+- Ensure the Flask app is running:
+  ```bash
+  npm install react-router-dom
+  npm install tailwindcss @tailwindcss/vite
+  npm install react-spinners
+  npm install react-icons
+  npm install framer-motion
+  npm install react-simple-typewriter
+  ```
 
 ## License
 
