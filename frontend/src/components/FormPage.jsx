@@ -93,7 +93,7 @@ const FormPage = () => {
 
         {currentStep === 0 && (
           <div>
-            <h1 className="text-3xl font-bold mb-4">Welcome!</h1>
+            <h1 className="text-3xl font-bold mb-3">Welcome!</h1>
             <p className="mb-2">
               This project audits whether AI models store personal data from
               their training. Help us help you by providing a little bit of
