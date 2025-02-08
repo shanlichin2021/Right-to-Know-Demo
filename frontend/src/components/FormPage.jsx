@@ -184,7 +184,7 @@ const FormPage = () => {
 
         {currentStep === 3 && (
           <div>
-            <h2 className="text-2xl font-semibold mb-4 font-mono">
+            <h2 className="text-2xl font-semibold mb-4 font-mono text-center">
               AI Response:
             </h2>
             {loading ? (
