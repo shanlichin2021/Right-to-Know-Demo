@@ -102,17 +102,19 @@ const FormPage = () => {
               information about yourself in this two-step process.
             </p>
             <p className="mb-4">Click 'next' to begin.</p>
-            <button
-              onClick={() => changeStep(1)}
-              className="bg-[#5c5e49] text-white px-4 py-2 rounded hover:bg-[#22332d] transition"
-            >
-              Next
-            </button>
+            <div className="flex justify-end">
+              <button
+                onClick={() => changeStep(1)}
+                className="bg-[#5c5e49] text-white px-4 py-2 rounded hover:bg-[#22332d] transition"
+              >
+                Next
+              </button>
+            </div>
           </div>
         )}
 
         {currentStep === 1 && (
-          <div>
+          <div className="flex flex-col">
             <h2 className="text-2xl font-semibold mb-4">
               Step 1: Personal Information
             </h2>
@@ -142,12 +144,14 @@ const FormPage = () => {
                   className="w-full p-2 border rounded-lg focus:ring focus:ring-blue-300"
                 />
               </div>
-              <button
-                type="submit"
-                className="bg-[#5c5e49] text-white px-4 py-2 rounded hover:bg-[#22332d] transition"
-              >
-                Next
-              </button>
+              <div className="flex justify-end">
+                <button
+                  type="submit"
+                  className="bg-[#5c5e49] text-white px-4 py-2 rounded hover:bg-[#22332d] transition"
+                >
+                  Next
+                </button>
+              </div>
             </form>
           </div>
         )}
@@ -171,13 +175,15 @@ const FormPage = () => {
                   required
                 />
               </div>
-              <button
-                type="submit"
-                disabled={loading}
-                className="bg-[#5c5e49] text-white px-4 py-2 rounded hover:bg-[#22332d] transition flex items-center justify-center"
-              >
-                {loading ? <HashLoader size={20} color="#fff" /> : "Submit"}
-              </button>
+              <div className="flex justify-end">
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="bg-[#5c5e49] text-white px-4 py-2 rounded hover:bg-[#22332d] transition flex items-center justify-center"
+                >
+                  {loading ? <HashLoader size={20} color="#fff" /> : "Submit"}
+                </button>
+              </div>
             </form>
           </div>
         )}
@@ -203,26 +209,28 @@ const FormPage = () => {
                 />
               </div>
             )}
-            <button
-              onClick={resetForm}
-              className="mt-6 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition flex items-center justify-center"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 mr-2"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="2"
+            <div className="flex justify-end">
+              <button
+                onClick={resetForm}
+                className="mt-6 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition flex items-center justify-center"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4 4v6h6M20 20v-6h-6M4 20l16-16"
-                />
-              </svg>
-              Restart
-            </button>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 mr-2"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4 4v6h6M20 20v-6h-6M4 20l16-16"
+                  />
+                </svg>
+                Restart
+              </button>
+            </div>
           </div>
         )}
       </div>
