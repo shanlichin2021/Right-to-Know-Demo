@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "./AuthContext";
 import { motion } from "framer-motion";
+import { RiDoorLockLine } from "react-icons/ri";
 
 const AuthModal = () => {
   const { user, login } = useContext(AuthContext);
@@ -26,7 +27,10 @@ const AuthModal = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        <div className="bg-[#181818] border border-[#2a2a2a] text-white p-8 rounded shadow-lg max-w-md w-full">
+        <div className="bg-[#181818] border border-[#2a2a2a] text-white p-10 rounded shadow-lg max-w-md w-full">
+          <div className="flex justify-center mb-8">
+            <RiDoorLockLine size={25} />
+          </div>
           {error && <p className="text-red-500 mb-4 text-center">{error}</p>}
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
