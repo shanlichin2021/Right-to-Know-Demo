@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import axios from "axios";
 import { HashLoader } from "react-spinners";
 import { ModelEndpointContext } from "./ModelEndpointContext";
@@ -18,6 +18,8 @@ const FormPage = () => {
   const [fade, setFade] = useState(false);
 
   const { selectedEndpoint } = useContext(ModelEndpointContext);
+  // Create a ref for the AI response container
+  const responseContainerRef = useRef(null);
 
   const resetForm = () => {
     setFormData({ name: "", email: "", field: "" });
@@ -61,6 +63,14 @@ const FormPage = () => {
       changeStep(3);
     }
   };
+
+  // useEffect to auto-scroll when AI response changes at step 3
+  useEffect(() => {
+    if (currentStep === 3 && responseContainerRef.current) {
+      responseContainerRef.current.scrollTop =
+        responseContainerRef.current.scrollHeight;
+    }
+  }, [aiResponse, currentStep]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#0f0f0f] text-white p-4">
@@ -197,7 +207,10 @@ const FormPage = () => {
                 <HashLoader size={30} color="#007bff" />
               </div>
             ) : (
-              <div className="bg-gray-800 p-4 rounded-lg text-white whitespace-pre-wrap font-mono">
+              <div
+                ref={responseContainerRef}
+                className="bg-gray-800 p-4 rounded-lg text-white whitespace-pre-wrap font-mono h-[60vh] overflow-y-auto"
+              >
                 <Typewriter
                   words={[aiResponse]}
                   typeSpeed={15}
