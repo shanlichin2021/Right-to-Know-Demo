@@ -42,7 +42,7 @@ const ChatPage = () => {
   return (
     <div className="flex flex-1 p-4 h-screen bg-[#0f0f0f] ">
       <ChatSidebar />
-      <div className="flex flex-col flex-1 pt-14">
+      <div className="flex flex-col flex-1 pr-12 pl-12 pt-14">
         <div className="flex-1 overflow-auto bg-[#181818] shadow-md rounded-lg p-4">
           {messages.map((msg, index) => (
             <div
@@ -69,7 +69,7 @@ const ChatPage = () => {
           )}
         </div>
 
-        <div className="flex items-center shadow-md p-3  mt-2">
+        <div className="flex items-center p-3  mt-2">
           <input
             type="text"
             className="flex-1 p-2 border border-[#2a2a2a] text-white rounded-lg bg-[#0f0f0f]"

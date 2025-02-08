@@ -9,6 +9,7 @@ import { ModelEndpointProvider } from "./components/ModelEndpointContext";
 import LandingPage from "./components/LandingPage";
 import AuthModal from "./components/AuthModal";
 import { AuthProvider } from "./components/AuthContext";
+import "./App.css";
 
 const App = () => {
   return (
