@@ -25,7 +25,7 @@ const ChatSidebar = () => {
             <input
               type="text"
               placeholder="Search..."
-              className="w-full p-2 pl-8 text-black rounded back text-white bg-[#0f0f0f] border-[#2a2a2a]"
+              className="w-full p-2 pl-8 text-black rounded back text-white bg-[#0f0f0f] border border-[#2a2a2a]"
               value={searchChat}
               onChange={(e) => setSearchChat(e.target.value)}
             />

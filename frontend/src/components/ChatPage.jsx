@@ -55,7 +55,7 @@ const ChatPage = () => {
                 className={`px-4 py-2 rounded-lg ${
                   msg.sender === "user"
                     ? "bg-[#5c5e49] text-white"
-                    : "bg-gray-300 text-black font-mono"
+                    : "bg-gray-600 text-white font-mono"
                 }`}
               >
                 {msg.text}
@@ -63,8 +63,8 @@ const ChatPage = () => {
             </div>
           ))}
           {isLoading && (
-            <div className="flex justify-center my-4">
-              <HashLoader color="#007bff" size={30} />
+            <div className="flex justify-center bottom-0 my-4">
+              <HashLoader color="#5c5e49" size={30} />
             </div>
           )}
         </div>
