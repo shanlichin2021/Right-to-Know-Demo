@@ -1,6 +1,7 @@
 import requests
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from urllib.parse import urlparse
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for frontend-backend communication
@@ -14,14 +15,12 @@ def generate():
     name = data.get("name", "")
     email = data.get("email", "")
     field = data.get("field", "")
-    # Get modelUrl (optional). If not provided or empty, use the default.
     model_url = data.get("modelUrl", "").strip() or OLLAMA_SERVER
+    model_name = data.get("modelName", "llama3.2")
     
-    # Require at least a name and field of work.
     if not (name and field):
         return jsonify({"error": "Please provide at least a name and field of work."}), 400
 
-    # Build the prompt and include email if provided.
     email_line = f"Email: {email}\n" if email.strip() != "" else ""
     prompt = (
         f"You are being audited to verify if your training data memorizes any information about a person. "
@@ -34,7 +33,7 @@ def generate():
     )
     
     try:
-        response_text = generate_llama_response(prompt, model_url)
+        response_text = generate_llama_response(prompt, model_url, model_name)
         return jsonify({"reply": response_text})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -44,7 +43,9 @@ def chat():
     data = request.get_json()
     history = data.get("history", [])
     message = data.get("message", "")
-
+    model_url = data.get("modelUrl", "").strip() or OLLAMA_SERVER
+    model_name = data.get("modelName", "llama3.2")
+    
     if not message:
         return jsonify({"error": "Message cannot be empty"}), 400
 
@@ -52,21 +53,35 @@ def chat():
     full_prompt = f"{context}\nuser: {message}"
 
     try:
-        response_text = generate_llama_response(full_prompt)
+        response_text = generate_llama_response(full_prompt, model_url, model_name)
         return jsonify({"reply": response_text})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-def generate_llama_response(prompt, model_url=None):
-    """Send the prompt to the Llama model via the provided API URL."""
+def generate_llama_response(prompt, model_url=None, modelName="llama3.2"):
     if model_url is None:
         model_url = OLLAMA_SERVER
+    # Prepend scheme if missing.
+    if not model_url.startswith("http"):
+        model_url = "http://" + model_url
+    
+    # Parse the URL and ensure it includes a valid path.
+    parsed = urlparse(model_url)
+    if not parsed.path or parsed.path == "/" or parsed.path != "/api/generate":
+        model_url = model_url.rstrip("/") + "/api/generate"
+    
     payload = {
-        "model": "llama3.2",
+        "model": modelName,
         "prompt": prompt,
         "stream": False,
     }
     headers = {"Content-Type": "application/json"}
+
+    # Logging to help verify values
+    print(f"Using model: {modelName}")
+    print("Payload being sent:")
+    print(payload)
+    print(f"POSTing to: {model_url}")
 
     try:
         response = requests.post(model_url, json=payload, headers=headers)

@@ -3,6 +3,7 @@ import axios from "axios";
 import { HashLoader } from "react-spinners";
 import { ModelEndpointContext } from "./ModelEndpointContext";
 import { Typewriter } from "react-simple-typewriter";
+import { RiResetLeftFill } from "react-icons/ri";
 
 const FormPage = () => {
   // currentStep: 0 = landing, 1 = personal info, 2 = field of work, 3 = AI response.
@@ -48,6 +49,7 @@ const FormPage = () => {
       const response = await axios.post("http://127.0.0.1:5000/api/generate", {
         ...formData,
         modelUrl: selectedEndpoint ? selectedEndpoint.url : "",
+        modelName: selectedEndpoint ? selectedEndpoint.model : "llama3.2",
       });
       if (response.status === 200) {
         setAiResponse(response.data.reply);
@@ -61,17 +63,16 @@ const FormPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#0f0f0f] text-white p-4 ">
+    <div className="min-h-screen flex items-center justify-center bg-[#0f0f0f] text-white p-4">
       <div
         className={`relative w-full max-w-xl bg-[#181818] border border-[#2a2a2a] p-8 rounded-lg shadow-md transition-opacity duration-500 ${
           fade ? "opacity-0" : "opacity-100"
         }`}
       >
-        {/* Only render reset button if not on the final step */}
         {currentStep !== 0 && currentStep !== 3 && (
           <button
             onClick={resetForm}
-            className="absolute top-4 right-4 flex items-center justify-center p-2 bg-gray-200 rounded-full hover:bg-gray-300 transition "
+            className="absolute top-4 right-4 flex items-center justify-center p-2 bg-gray-200 rounded-full hover:bg-gray-300 transition"
             title="Reset Form"
           >
             <svg
@@ -93,9 +94,7 @@ const FormPage = () => {
 
         {currentStep === 0 && (
           <div>
-            <h1 className="text-3xl font-bold mb-4 text-center justify-center">
-              Welcome!
-            </h1>
+            <h1 className="text-3xl font-bold mb-4 text-center">Welcome!</h1>
             <p className="mb-2">
               This project audits whether AI models store personal data from
               their training. Help us help you by providing a little bit of
@@ -214,21 +213,7 @@ const FormPage = () => {
                 onClick={resetForm}
                 className="mt-6 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition flex items-center justify-center"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 mr-2"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M4 4v6h6M20 20v-6h-6M4 20l16-16"
-                  />
-                </svg>
-                Restart
+                <RiResetLeftFill size={20} />
               </button>
             </div>
           </div>

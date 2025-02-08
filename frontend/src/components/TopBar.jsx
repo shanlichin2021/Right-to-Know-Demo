@@ -8,6 +8,7 @@ import {
   RiDeleteBinLine,
   RiAddCircleLine,
   RiHome9Line, // Import home icon
+  RiAddLine, // Import add icon
 } from "react-icons/ri";
 import { ModelEndpointContext } from "./ModelEndpointContext";
 
@@ -23,20 +24,20 @@ const TopBar = () => {
   const [isManaging, setIsManaging] = useState(false);
   const [newName, setNewName] = useState("");
   const [newUrl, setNewUrl] = useState("");
+  const [newModel, setNewModel] = useState("");
   const [renameId, setRenameId] = useState(null);
   const [renameValue, setRenameValue] = useState("");
 
-  // Handler for adding a new endpoint via the form (allows Enter submission)
   const handleAddEndpoint = (e) => {
     e.preventDefault();
-    if (newName && newUrl) {
-      addEndpoint(newName, newUrl);
+    if (newName && newUrl && newModel) {
+      addEndpoint(newName, newUrl, newModel);
       setNewName("");
       setNewUrl("");
+      setNewModel("");
     }
   };
 
-  // Handler for renaming an endpoint when Enter is pressed in the rename input.
   const handleRenameKeyDown = (e, id) => {
     if (e.key === "Enter") {
       renameEndpoint(id, renameValue);
@@ -63,27 +64,29 @@ const TopBar = () => {
 
       {/* Endpoint Selector and Management UI */}
       <div className="ml-auto relative overflow-visible">
-        <select
-          value={selectedEndpoint ? selectedEndpoint.id : ""}
-          onChange={(e) => selectEndpoint(Number(e.target.value))}
-          className=" bg-[#0f0f0f] border border-[#2a2a2a] text-white p-2 rounded"
-        >
-          {endpoints.map((ep) => (
-            <option key={ep.id} value={ep.id}>
-              {ep.name}
-            </option>
-          ))}
-        </select>
-        <button
-          onClick={() => setIsManaging(!isManaging)}
-          className="ml-2 bg-[#0f0f0f] border border-[#2a2a2a] p-2 rounded text-white"
-          title="Manage Endpoints"
-        >
-          Manage
-        </button>
+        <div className="flex items-center">
+          <select
+            value={selectedEndpoint ? selectedEndpoint.id : ""}
+            onChange={(e) => selectEndpoint(Number(e.target.value))}
+            className="ml-2 bg-[#0f0f0f] text-white p-2 rounded"
+          >
+            {endpoints.map((ep) => (
+              <option key={ep.id} value={ep.id}>
+                {ep.name}
+              </option>
+            ))}
+          </select>
+          <button
+            onClick={() => setIsManaging(!isManaging)}
+            className="ml-2 bg-[#0f0f0f] p-2 rounded text-white"
+            title="Manage Endpoints"
+          >
+            <RiAddLine size={20} />
+          </button>
+        </div>
 
         {isManaging && (
-          <div className="absolute right-0 mt-2 w-80 bg-white text-black p-4 rounded shadow-lg z-50">
+          <div className="absolute right-0 mt-2 w-80 bg-[#181818] text-white p-4 rounded shadow-lg z-50">
             <h3 className="font-bold mb-2">Manage Endpoints</h3>
             <ul className="mb-4">
               {endpoints.map((ep) => (
@@ -147,14 +150,13 @@ const TopBar = () => {
                 </li>
               ))}
             </ul>
-            {/* Wrap add new endpoint inputs in a form to allow Enter key submission */}
             <form onSubmit={handleAddEndpoint} className="flex flex-col">
               <input
                 type="text"
                 placeholder="Endpoint Name"
                 value={newName}
                 onChange={(e) => setNewName(e.target.value)}
-                className="border p-1 mb-2"
+                className="border opacity-50 rounded p-1 mb-2"
                 required
               />
               <input
@@ -162,12 +164,20 @@ const TopBar = () => {
                 placeholder="Endpoint URL"
                 value={newUrl}
                 onChange={(e) => setNewUrl(e.target.value)}
-                className="border p-1 mb-2"
+                className="border opacity-50 rounded p-1 mb-2"
+                required
+              />
+              <input
+                type="text"
+                placeholder="Model Name (e.g. dolphin-mistral:latest)"
+                value={newModel}
+                onChange={(e) => setNewModel(e.target.value)}
+                className="border opacity-50 rounded p-1 mb-2"
                 required
               />
               <button
                 type="submit"
-                className="bg-blue-500 text-white py-1 rounded flex items-center justify-center"
+                className="bg-[#5c5e49] text-white py-1 rounded flex items-center justify-center"
                 title="Add Endpoint"
               >
                 <RiAddCircleLine size={24} className="mr-1" /> Add
