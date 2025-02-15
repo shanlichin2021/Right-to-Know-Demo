@@ -6,7 +6,7 @@ import { Typewriter } from "react-simple-typewriter";
 import { RiResetLeftFill } from "react-icons/ri";
 
 const FormPage = () => {
-  // currentStep: 0 = landing, 1 = personal info, 2 = field of work, 3 = AI response.
+  // currentStep: 0 = landing, 1 = personal info, 2 = occupation, 3 = AI response.
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState({
     name: "",
@@ -18,7 +18,6 @@ const FormPage = () => {
   const [fade, setFade] = useState(false);
 
   const { selectedEndpoint } = useContext(ModelEndpointContext);
-  // Create a ref for the AI response container
   const responseContainerRef = useRef(null);
 
   const resetForm = () => {
@@ -39,19 +38,24 @@ const FormPage = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleStep1Submit = (e) => {
-    e.preventDefault();
-    changeStep(2);
-  };
-
-  const handleStep2Submit = async (e) => {
-    e.preventDefault();
+  // Shared submission logic used by both initial submission and regeneration
+  const submitForm = async () => {
     setLoading(true);
+
+    // Construct the prompt from form data
+    const promptMessage = `User Information:
+Name: ${formData.name}
+Email: ${formData.email}
+Occupation: ${formData.field}
+
+Please check if your AI training dataset contains any personal data related to me and provide details if available.`;
+
     try {
-      const response = await axios.post("http://127.0.0.1:5000/api/generate", {
-        ...formData,
+      const response = await axios.post("http://127.0.0.1:5000/api/chat", {
+        history: [], // No prior history for form submission
+        message: promptMessage,
         modelUrl: selectedEndpoint ? selectedEndpoint.url : "",
-        modelName: selectedEndpoint ? selectedEndpoint.model : "llama3.2",
+        modelName: selectedEndpoint ? selectedEndpoint.model : "llava:latest",
       });
       if (response.status === 200) {
         setAiResponse(response.data.reply);
@@ -60,11 +64,24 @@ const FormPage = () => {
       setAiResponse("Error retrieving response. Please try again.");
     } finally {
       setLoading(false);
-      changeStep(3);
+      if (currentStep !== 3) {
+        changeStep(3);
+      }
     }
   };
 
-  // useEffect to auto-scroll when AI response changes at step 3
+  // Called when the form on step 2 is submitted
+  const handleStep2Submit = async (e) => {
+    e.preventDefault();
+    await submitForm();
+  };
+
+  // Called from the regenerate button in step 3
+  const handleRegenerate = async () => {
+    await submitForm();
+  };
+
+  // Auto-scroll for the AI response container in step 3
   useEffect(() => {
     if (currentStep === 3 && responseContainerRef.current) {
       responseContainerRef.current.scrollTop =
@@ -128,10 +145,14 @@ const FormPage = () => {
               Step 1: Personal Information
             </h2>
             <p className="mb-6">
-              To figure out whether this model has information on you, please
-              provide your first and last name, email is optional.
+              Please provide your first and last name (email is optional).
             </p>
-            <form onSubmit={handleStep1Submit}>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                changeStep(2);
+              }}
+            >
               <div className="mb-4 opacity-50">
                 <input
                   type="text"
@@ -169,7 +190,7 @@ const FormPage = () => {
           <div>
             <h2 className="text-2xl font-semibold mb-4">Step 2: Occupation</h2>
             <p className="mb-4">
-              Please enter your occupation. This helps us tailor the
+              Enter your occupation. This information helps tailor the AI
               interrogation prompt.
             </p>
             <form onSubmit={handleStep2Submit}>
@@ -221,7 +242,14 @@ const FormPage = () => {
                 />
               </div>
             )}
-            <div className="flex justify-end">
+            <div className="flex justify-end space-x-4">
+              <button
+                onClick={handleRegenerate}
+                disabled={loading}
+                className="mt-6 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition flex items-center justify-center"
+              >
+                Regenerate
+              </button>
               <button
                 onClick={resetForm}
                 className="mt-6 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition flex items-center justify-center"

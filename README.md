@@ -175,6 +175,7 @@ cd Right-to-Know-Demo
 
 - Ensure the Flask app is running:
   ```bash
+  npm install axios
   npm install react-router-dom
   npm install tailwindcss @tailwindcss/vite
   npm install react-spinners
