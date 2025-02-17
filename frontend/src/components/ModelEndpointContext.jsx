@@ -3,10 +3,10 @@ import React, { createContext, useState } from "react";
 export const ModelEndpointContext = createContext();
 
 export const ModelEndpointProvider = ({ children }) => {
-  const [endpoints, setEndpoints] = useState([
+  const [endpoints] = useState([
     {
       id: 1,
-      name: "llava:latest (Default)",
+      name: "llava:latest",
       url: "https://cot6930-ollama-serve.kub.hpc.fau.edu/api/generate",
       model: "llava:latest",
     },
@@ -34,9 +34,9 @@ export const ModelEndpointProvider = ({ children }) => {
 
     {
       id: 5,
-      name: "mistral-large:latest",
+      name: "llama2:latest",
       url: "https://cot6930-ollama-serve.kub.hpc.fau.edu/api/generate",
-      model: "mistral-large:latest",
+      model: "llama2:latest",
     },
   ]);
   const [selectedEndpointId, setSelectedEndpointId] = useState(1);

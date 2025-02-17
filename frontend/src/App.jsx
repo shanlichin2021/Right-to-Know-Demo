@@ -1,14 +1,15 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import TopBar from "./components/TopBar";
-import ChatPage from "./components/ChatPage";
-import AboutPage from "./components/AboutPage";
+import ChatPage from "./pages/ChatPage";
+import AboutPage from "./pages/AboutPage";
+import FormPage from "./pages/FormPage";
+import LandingPage from "./pages/LandingPage";
+import UniversalSidebar from "./components/UniversalSidebar";
 import { ChatProvider } from "./components/ChatContext";
-import FormPage from "./components/FormPage";
 import { ModelEndpointProvider } from "./components/ModelEndpointContext";
-import LandingPage from "./components/LandingPage";
-import AuthModal from "./components/AuthModal";
 import { AuthProvider } from "./components/AuthContext";
+import AuthModal from "./components/AuthModal";
 import "./App.css";
 
 const App = () => {
@@ -17,7 +18,6 @@ const App = () => {
       <AuthProvider>
         <ModelEndpointProvider>
           <Router>
-            {/* AuthModal overlays all pages until user is logged in */}
             <AuthModal />
             <div className="h-screen flex flex-col">
               <TopBar />
@@ -29,6 +29,7 @@ const App = () => {
                   <Route path="/chat" element={<ChatPage />} />
                 </Routes>
               </div>
+              <UniversalSidebar />
             </div>
           </Router>
         </ModelEndpointProvider>

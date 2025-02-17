@@ -6,14 +6,11 @@ import {
   RiInformation2Fill,
   RiHome9Line,
 } from "react-icons/ri";
-import { ModelEndpointContext } from "./ModelEndpointContext";
+import EndpointDropdown from "./EndpointDropdown";
 
 const TopBar = () => {
-  const { endpoints, selectedEndpoint, selectEndpoint } =
-    useContext(ModelEndpointContext);
-
   return (
-    <div className="fixed top-0 left-0 w-full h-13 flex items-center border-b border-[#2a2a2a] bg-darker text-gray-400 px-6 shadow-lg z-50 bg-[#181818]">
+    <div className="fixed top-0 left-0 w-full h-13 flex items-center border-b border-[#2a2a2a] bg-[#181818] text-gray-400 px-6 shadow-lg z-50">
       <div className="flex space-x-6">
         <Link to="/" className="hover:text-white transition" title="Home">
           <RiHome9Line size={24} />
@@ -29,19 +26,9 @@ const TopBar = () => {
         </Link>
       </div>
 
-      {/* Endpoint Selector */}
+      {/* Replace the old select with the new EndpointDropdown */}
       <div className="ml-auto">
-        <select
-          value={selectedEndpoint ? selectedEndpoint.id : ""}
-          onChange={(e) => selectEndpoint(Number(e.target.value))}
-          className="ml-2 bg-[#0f0f0f] text-white p-2 rounded"
-        >
-          {endpoints.map((ep) => (
-            <option key={ep.id} value={ep.id}>
-              {ep.name}
-            </option>
-          ))}
-        </select>
+        <EndpointDropdown />
       </div>
     </div>
   );

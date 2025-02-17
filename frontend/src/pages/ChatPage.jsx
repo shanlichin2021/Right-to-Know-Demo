@@ -1,9 +1,8 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
-import { ChatContext } from "./ChatContext";
-import { ModelEndpointContext } from "./ModelEndpointContext";
+import { ChatContext } from "../components/ChatContext";
+import { ModelEndpointContext } from "../components/ModelEndpointContext";
 import { HashLoader } from "react-spinners";
-import ChatSidebar from "./ChatSidebar";
 
 const ChatPage = () => {
   const { messages, addMessage, saveChat } = useContext(ChatContext);
@@ -41,7 +40,6 @@ const ChatPage = () => {
 
   return (
     <div className="flex flex-1 p-4 h-screen bg-[#0f0f0f]">
-      <ChatSidebar />
       <div className="flex flex-col flex-1 pr-12 pl-12 pt-14">
         <div className="flex-1 overflow-auto bg-[#181818] shadow-md rounded-lg p-4">
           {messages.map((msg, index) => (
