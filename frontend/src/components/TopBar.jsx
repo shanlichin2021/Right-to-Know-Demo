@@ -10,7 +10,7 @@ import EndpointDropdown from "./EndpointDropdown";
 
 const TopBar = () => {
   return (
-    <div className="fixed top-0 left-0 w-full h-13 flex items-center border-b border-[#2a2a2a] bg-[#181818] text-gray-400 px-6 shadow-lg z-50">
+    <div className="fixed top-0 left-0 w-full h-12 flex items-center border-b border-[#2a2a2a] bg-[#181818] text-gray-400 px-6 shadow-lg z-50">
       <div className="flex space-x-6">
         <Link to="/" className="hover:text-white transition" title="Home">
           <RiHome9Line size={24} />

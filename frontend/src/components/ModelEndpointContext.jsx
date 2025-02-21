@@ -24,20 +24,6 @@ export const ModelEndpointProvider = ({ children }) => {
       url: "https://cot6930-ollama-serve.kub.hpc.fau.edu/api/generate",
       model: "codestral:latest",
     },
-
-    {
-      id: 4,
-      name: "llama3.2-vision:latest",
-      url: "https://cot6930-ollama-serve.kub.hpc.fau.edu/api/generate",
-      model: "llama3.2-vision:latest",
-    },
-
-    {
-      id: 5,
-      name: "llama2:latest",
-      url: "https://cot6930-ollama-serve.kub.hpc.fau.edu/api/generate",
-      model: "llama2:latest",
-    },
   ]);
   const [selectedEndpointId, setSelectedEndpointId] = useState(1);
 
