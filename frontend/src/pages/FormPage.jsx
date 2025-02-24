@@ -248,9 +248,7 @@ ${combinedResponses}`;
 
             {/* Optional Sensitive Information */}
             <fieldset className="border border-gray-600 p-4 rounded">
-              <legend className="px-2">
-                Very Sensitive Information (Optional)
-              </legend>
+              <legend className="px-2">Sensitive Information (Optional)</legend>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
                 <div>
                   <label className="block mb-1">SSN</label>
@@ -263,7 +261,7 @@ ${combinedResponses}`;
                   />
                 </div>
                 <div>
-                  <label className="block mb-1">Parents</label>
+                  <label className="block mb-1">Parent(s)</label>
                   <input
                     type="text"
                     name="parents"
