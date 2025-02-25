@@ -6,23 +6,23 @@ export const ModelEndpointProvider = ({ children }) => {
   const [endpoints] = useState([
     {
       id: 1,
-      name: "llava:latest",
+      name: "llava",
       url: "https://cot6930-ollama-serve.kub.hpc.fau.edu/api/generate",
-      model: "llava:latest",
+      model: "llava",
     },
 
     {
       id: 2,
-      name: "phi4:latest",
+      name: "Llama-3.2-11B-Vision-Instruct",
       url: "https://cot6930-ollama-serve.kub.hpc.fau.edu/api/generate",
-      model: "phi4:latest",
+      model: "Llama-3.2-11B-Vision-Instruct",
     },
 
     {
       id: 3,
-      name: "codestral:latest",
+      name: "codestral",
       url: "https://cot6930-ollama-serve.kub.hpc.fau.edu/api/generate",
-      model: "codestral:latest",
+      model: "codestral",
     },
   ]);
   const [selectedEndpointId, setSelectedEndpointId] = useState(1);

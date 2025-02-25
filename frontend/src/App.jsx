@@ -29,7 +29,6 @@ const App = () => {
                   <Route path="/chat" element={<ChatPage />} />
                 </Routes>
               </div>
-              <UniversalSidebar />
             </div>
           </Router>
         </ModelEndpointProvider>
