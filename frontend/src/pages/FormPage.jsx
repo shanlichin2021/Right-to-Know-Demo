@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
-import { HashLoader } from "react-spinners";
+import { PuffLoader, RingLoader } from "react-spinners";
 import { ModelEndpointContext } from "../components/ModelEndpointContext";
 
 const FormPage = () => {
@@ -122,46 +122,31 @@ ${combinedResponses}`;
 
   return (
     <div className="min-h-screen bg-[#0f0f0f] text-white p-6 mt-10">
-      {/* Modal for detailed explanation of the process */}
-      {showModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
-          <div className="bg-[#181818] border border-[#2a2a2a] p-6 rounded-lg max-w-lg w-full">
-            <h2 className="text-2xl font-bold mb-4">How It Works</h2>
-            <p className="mb-4">
-              When you click the Submit button, your data is sent to multiple AI
-              models for analysis. Their responses are collected and then
-              summarized into a concise report so you can easily see if any of
-              your sensitive information might have been included in training
-              datasets. This transparency is key to building trust in the
-              process.
-            </p>
-            <button
-              onClick={() => setShowModal(false)}
-              className="bg-[#5c5e49] text-white px-4 py-2 rounded hover:bg-[#22332d] transition"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
-
       {/* Two-column layout with a vertical divider */}
       <div className="flex flex-col md:flex-row">
         {/* LEFT COLUMN */}
         <div className="md:w-1/2 pr-8 border-r border-[#2a2a2a]">
           <div className="bg-[#181818] border border-[#2a2a2a] p-8 rounded-lg shadow-md">
-            <h1 className="text-3xl font-bold mb-4 text-center">
-              RIGHT TO KNOW
-            </h1>
-            <h2 className="text-xl font-semibold mb-2">WELCOME</h2>
+            <h1 className="text-3xl font-bold mb-8 text-center">Welcome!</h1>
             <p className="mb-4">
-              <strong>WHY:</strong>
+              This project empowers you by ensuring AI transparency. We want
+              this tool to help you know 'if' or 'how' your personal data is
+              used.
             </p>
             <p className="mb-4">
-              <strong>WHAT:</strong>
+              Our tool audits AI training datasets to check for inadvertent
+              inclusion of personal information, helping you verify your digital
+              privacy.
             </p>
             <p className="mb-4">
-              <strong>HOW:</strong>
+              We securely submit your data to multiple AI models for analysis.
+            </p>
+            <p className="mb-4">
+              <strong>
+                All information you submit is used exclusively for the form
+                submission process and is NOT stored within the app or any
+                external servers.
+              </strong>
             </p>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
@@ -310,7 +295,7 @@ ${combinedResponses}`;
           <div className="bg-[#181818] border border-[#2a2a2a] p-8 rounded-lg shadow-md flex items-center justify-center">
             {loading ? (
               <div className="flex flex-col items-center">
-                <HashLoader size={40} color="#5c5e49" />
+                <RingLoader size={60} color="#5c5e49" />
                 <p className="mt-4">Analyzing...</p>
               </div>
             ) : summary ? (
@@ -326,9 +311,11 @@ ${combinedResponses}`;
                 </div>
               </div>
             ) : (
-              <div className="text-center text-gray-400">
-                <p>Awaiting submission...</p>
-                <p>(fancy icon placeholder)</p>
+              <div className="flex flex-col items-center text-gray-400">
+                <p className="mb-4">Awaiting submission...</p>
+                <div>
+                  <PuffLoader size={60} color="#5c5e49" />
+                </div>
               </div>
             )}
           </div>
