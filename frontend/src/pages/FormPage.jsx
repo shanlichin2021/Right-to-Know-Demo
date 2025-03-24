@@ -22,7 +22,6 @@ const FormPage = () => {
   const [loading, setLoading] = useState(false);
   const [summary, setSummary] = useState("");
   const [emailNotice, setEmailNotice] = useState("");
-  const [showModal, setShowModal] = useState(false);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
