@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
-import { PuffLoader, RingLoader } from "react-spinners";
+import { PuffLoader, RingLoader, HashLoader } from "react-spinners";
 import { ModelEndpointContext } from "../components/ModelEndpointContext";
 
 const FormPage = () => {
