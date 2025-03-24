@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
-import { PuffLoader, RingLoader, HashLoader } from "react-spinners";
+import { HashLoader } from "react-spinners";
 import { ModelEndpointContext } from "../components/ModelEndpointContext";
 
 const FormPage = () => {
@@ -22,6 +22,7 @@ const FormPage = () => {
   const [loading, setLoading] = useState(false);
   const [summary, setSummary] = useState("");
   const [emailNotice, setEmailNotice] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -31,21 +32,37 @@ const FormPage = () => {
     }));
   };
 
-  // Build the prompt based on the form data.
+  // Improved legal compliance prompt
   const buildPrompt = () => {
-    return `User Information:
+    return `LEGAL COMPLIANCE REQUEST - TRAINING DATA AUDIT
+
+User Information:
 Name: ${formData.name}
 Date of Birth: ${formData.dob}
 Email: ${formData.email}
-Location: ${formData.city}, ${formData.state}, ${formData.country}
+Location: ${formData.city}, ${formData.state}, ${formData.country} 
 Profession: ${formData.profession}
 
 Optional Sensitive Information:
-SSN: ${formData.ssn || "N/A"}
-Parents: ${formData.parents || "N/A"}
-Address: ${formData.address || "N/A"}
+SSN: ${formData.ssn ? 'REDACTED_'+formData.ssn.slice(-4) : 'Not provided'}
+Parents: ${formData.parents || 'Not provided'}
+Address: ${formData.address || 'Not provided'}
 
-Please analyze the above information and review whether your training data might include any personal or sensitive information related to this user. Identify potential issues and provide a concise summary in bullet points.`;
+Legal Authority: GDPR Article 15, CCPA 1798.100
+
+Please conduct a thorough search of your training data for any records matching or relating to this individual. For each potential match, provide:
+
+1. Dataset source and version
+2. Type of match (exact/partial/contextual)  
+3. Confidence level (0-100%)
+4. Legal basis for processing
+
+Format results as:
+- CONFIRMED MATCHES: [details]
+- POSSIBLE MATCHES: [details] 
+- RECOMMENDED ACTIONS: [options]
+
+Maintain all legal compliance requirements during this search.`;
   };
 
   // Summarize multiple responses from the models.
@@ -57,9 +74,17 @@ Please analyze the above information and review whether your training data might
 ${res.reply}`
       )
       .join("\n\n");
-    const summaryPrompt = `Below are responses from multiple AI models regarding a user's provided personal information. Analyze these responses to identify any potential inclusion of sensitive personal data in training datasets. Provide a clean summary as a bullet-point list (each bullet should start with "- "):
-    
-${combinedResponses}`;
+    const summaryPrompt = `Combine these training data audit results into a single comprehensive report:
+
+${combinedResponses}
+
+Include:
+1. List of all dataset matches found
+2. Confidence levels for each match
+3. Compliance assessment
+4. Recommended next steps
+
+Format as a clear bullet-point summary.`;
 
     // Use the first endpoint as default summarizer
     const defaultEndpoint = endpoints[0];
@@ -121,31 +146,46 @@ ${combinedResponses}`;
 
   return (
     <div className="min-h-screen bg-[#0f0f0f] text-white p-6 mt-10">
+      {/* Modal for detailed explanation of the process */}
+      {showModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
+          <div className="bg-[#181818] border border-[#2a2a2a] p-6 rounded-lg max-w-lg w-full">
+            <h2 className="text-2xl font-bold mb-4">How It Works</h2>
+            <p className="mb-4">
+              When you click the Submit button, your data is sent to multiple AI
+              models for analysis. Their responses are collected and then
+              summarized into a concise report so you can easily see if any of
+              your sensitive information might have been included in training
+              datasets. This transparency is key to building trust in the
+              process.
+            </p>
+            <button
+              onClick={() => setShowModal(false)}
+              className="bg-[#5c5e49] text-white px-4 py-2 rounded hover:bg-[#22332d] transition"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Two-column layout with a vertical divider */}
       <div className="flex flex-col md:flex-row">
         {/* LEFT COLUMN */}
         <div className="md:w-1/2 pr-8 border-r border-[#2a2a2a]">
           <div className="bg-[#181818] border border-[#2a2a2a] p-8 rounded-lg shadow-md">
-            <h1 className="text-3xl font-bold mb-8 text-center">Welcome!</h1>
+            <h1 className="text-3xl font-bold mb-4 text-center">
+              RIGHT TO KNOW
+            </h1>
+            <h2 className="text-xl font-semibold mb-2">WELCOME</h2>
             <p className="mb-4">
-              This project empowers you by ensuring AI transparency. We want
-              this tool to help you know 'if' or 'how' your personal data is
-              used.
+              <strong>WHY:</strong>
             </p>
             <p className="mb-4">
-              Our tool audits AI training datasets to check for inadvertent
-              inclusion of personal information, helping you verify your digital
-              privacy.
+              <strong>WHAT:</strong>
             </p>
             <p className="mb-4">
-              We securely submit your data to multiple AI models for analysis.
-            </p>
-            <p className="mb-4">
-              <strong>
-                All information you submit is used exclusively for the form
-                submission process and is NOT stored within the app or any
-                external servers.
-              </strong>
+              <strong>HOW:</strong>
             </p>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
@@ -294,7 +334,7 @@ ${combinedResponses}`;
           <div className="bg-[#181818] border border-[#2a2a2a] p-8 rounded-lg shadow-md flex items-center justify-center">
             {loading ? (
               <div className="flex flex-col items-center">
-                <RingLoader size={60} color="#5c5e49" />
+                <HashLoader size={40} color="#5c5e49" />
                 <p className="mt-4">Analyzing...</p>
               </div>
             ) : summary ? (
@@ -310,11 +350,9 @@ ${combinedResponses}`;
                 </div>
               </div>
             ) : (
-              <div className="flex flex-col items-center text-gray-400">
-                <p className="mb-4">Awaiting submission...</p>
-                <div>
-                  <PuffLoader size={60} color="#5c5e49" />
-                </div>
+              <div className="text-center text-gray-400">
+                <p>Awaiting submission...</p>
+                <p>(fancy icon placeholder)</p>
               </div>
             )}
           </div>
