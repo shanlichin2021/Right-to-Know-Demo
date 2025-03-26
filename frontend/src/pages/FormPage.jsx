@@ -120,33 +120,33 @@ ${combinedResponses}`;
   };
 
   return (
-    <div className="min-h-screen bg-[#0f0f0f] text-white p-6 mt-10">
+    <div className="min-h-screen bg-[#030712] text-white p-8 mt-8">
       {/* Two-column layout with a vertical divider */}
       <div className="flex flex-col md:flex-row">
         {/* LEFT COLUMN */}
-        <div className="md:w-1/2 pr-8 border-r border-[#2a2a2a]">
-          <div className="bg-[#181818] border border-[#2a2a2a] p-8 rounded-lg shadow-md">
-            <h1 className="text-3xl font-bold mb-8 text-center">Welcome!</h1>
-            <p className="mb-4">
-              This project empowers you by ensuring AI transparency. We want
-              this tool to help you know 'if' or 'how' your personal data is
-              used.
-            </p>
-            <p className="mb-4">
-              Our tool audits AI training datasets to check for inadvertent
-              inclusion of personal information, helping you verify your digital
-              privacy.
-            </p>
-            <p className="mb-4">
-              We securely submit your data to multiple AI models for analysis.
-            </p>
-            <p className="mb-4">
-              <strong>
-                All information you submit is used exclusively for the form
-                submission process and is NOT stored within the app or any
-                external servers.
-              </strong>
-            </p>
+        <div className="md:w-1/2 pr-8 border-r border-[#17264b]">
+          <div className="p-8 rounded-[5px] shadow-md">
+            <div className="bg-[#070c19] border border-[#17264b] p-6 rounded-[6px] mb-6">
+              <p className="mb-4">
+                The goal of this project is to be a stepping stone towards
+                ensuring AI transparency.
+              </p>
+              <p className="mb-4">
+                Our tool audits AI training datasets to check for inadvertent
+                inclusion of personal information, helping you verify and
+                maintain your digital privacy.
+              </p>
+              <p className="mb-4">
+                We securely submit your data to multiple AI models for analysis.
+              </p>
+              <p className="mb-4">
+                <strong>
+                  All information you submit is used exclusively for the form
+                  submission process. Your information is NOT stored within the
+                  app or any external servers.
+                </strong>
+              </p>
+            </div>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label className="block mb-1">Name</label>
@@ -156,7 +156,7 @@ ${combinedResponses}`;
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full p-2 border rounded bg-[#0f0f0f]"
+                  className="w-full p-2 border border-[#0f1937] rounded bg-[#070c19]"
                 />
               </div>
               <div>
@@ -167,20 +167,18 @@ ${combinedResponses}`;
                   value={formData.dob}
                   onChange={handleChange}
                   required
-                  className="w-full p-2 border rounded bg-[#0f0f0f]"
+                  className="w-full p-2 border border-[#0f1937] rounded bg-[#070c19]"
                 />
               </div>
               <div>
-                <label className="block mb-1">
-                  Email (for results delivery)
-                </label>
+                <label className="block mb-1">Email (Optional)</label>
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="example@email.com"
-                  className="w-full p-2 border rounded bg-[#0f0f0f]"
+                  className="w-full p-2 border border-[#0f1937] rounded bg-[#070c19]"
                 />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -192,7 +190,7 @@ ${combinedResponses}`;
                     value={formData.city}
                     onChange={handleChange}
                     required
-                    className="w-full p-2 border rounded bg-[#0f0f0f]"
+                    className="w-full p-2 border border-[#0f1937] rounded bg-[#070c19]"
                   />
                 </div>
                 <div>
@@ -203,7 +201,7 @@ ${combinedResponses}`;
                     value={formData.state}
                     onChange={handleChange}
                     required
-                    className="w-full p-2 border rounded bg-[#0f0f0f]"
+                    className="w-full p-2 border border-[#0f1937] rounded bg-[#070c19]"
                   />
                 </div>
                 <div>
@@ -214,7 +212,7 @@ ${combinedResponses}`;
                     value={formData.country}
                     onChange={handleChange}
                     required
-                    className="w-full p-2 border rounded bg-[#0f0f0f]"
+                    className="w-full p-2 border border-[#0f1937] rounded bg-[#070c19]"
                   />
                 </div>
               </div>
@@ -226,10 +224,10 @@ ${combinedResponses}`;
                   value={formData.profession}
                   onChange={handleChange}
                   required
-                  className="w-full p-2 border rounded bg-[#0f0f0f]"
+                  className="w-full p-2 border border-[#0f1937] rounded bg-[#070c19]"
                 />
               </div>
-              <fieldset className="border border-gray-600 p-4 rounded">
+              <fieldset className="border border-[#17264b] p-4 rounded">
                 <legend className="px-2">
                   Sensitive Information (Optional)
                 </legend>
@@ -241,7 +239,7 @@ ${combinedResponses}`;
                       name="ssn"
                       value={formData.ssn}
                       onChange={handleChange}
-                      className="w-full p-2 border rounded bg-[#0f0f0f]"
+                      className="w-full p-2 border border-[#0f1937] rounded bg-[#070c19]"
                     />
                   </div>
                   <div>
@@ -251,7 +249,7 @@ ${combinedResponses}`;
                       name="parents"
                       value={formData.parents}
                       onChange={handleChange}
-                      className="w-full p-2 border rounded bg-[#0f0f0f]"
+                      className="w-full p-2 border border-[#0f1937] rounded bg-[#070c19]"
                     />
                   </div>
                   <div>
@@ -261,7 +259,7 @@ ${combinedResponses}`;
                       name="address"
                       value={formData.address}
                       onChange={handleChange}
-                      className="w-full p-2 border rounded bg-[#0f0f0f]"
+                      className="w-full p-2 border border-[#0f1937] rounded bg-[#070c19]"
                     />
                   </div>
                 </div>
@@ -280,7 +278,7 @@ ${combinedResponses}`;
                 <button
                   type="submit"
                   disabled={loading}
-                  className="bg-[#5c5e49] text-white px-4 py-2 rounded hover:bg-[#22332d] transition flex items-center"
+                  className="bg-[#d30000] text-white px-4 py-2 rounded hover:bg-[#832925] transition flex items-center"
                 >
                   {loading ? <HashLoader size={20} color="#fff" /> : "Submit"}
                 </button>
@@ -291,15 +289,15 @@ ${combinedResponses}`;
 
         {/* RIGHT COLUMN */}
         <div className="md:w-1/2 pl-8">
-          <div className="bg-[#181818] border border-[#2a2a2a] p-8 rounded-lg shadow-md flex items-center justify-center">
+          <div className="p-8 rounded-[5px] shadow-md flex items-center justify-center">
             {loading ? (
               <div className="flex flex-col items-center">
-                <RingLoader size={60} color="#5c5e49" />
+                <RingLoader size={60} color="#0087f0" />
                 <p className="mt-4">Analyzing...</p>
               </div>
             ) : summary ? (
               <div>
-                <h3 className="text-2xl font-semibold mb-4 text-center">
+                <h3 className="text-2xl font-semibold mb-4 text-center ">
                   Results:
                 </h3>
                 <div className="bg-[#2a2a2a] p-4 rounded-lg">
@@ -313,7 +311,7 @@ ${combinedResponses}`;
               <div className="flex flex-col items-center text-gray-400">
                 <p className="mb-4">Awaiting submission...</p>
                 <div>
-                  <PuffLoader size={60} color="#5c5e49" />
+                  <PuffLoader size={60} color="#0087f0" />
                 </div>
               </div>
             )}

@@ -32,7 +32,7 @@ const EndpointDropdown = () => {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center bg-[#0f0f0f] text-white px-3 py-2 rounded focus:outline-none"
+        className="flex items-center bg-[#030712] text-white px-3 py-2 rounded focus:outline-none"
       >
         <span>
           {selectedEndpoint ? selectedEndpoint.name : "Select Endpoint"}
