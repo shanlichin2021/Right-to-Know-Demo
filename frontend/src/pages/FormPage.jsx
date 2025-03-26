@@ -36,7 +36,7 @@ const FormPage = () => {
     return `User Information:
 Name: ${formData.name}
 Date of Birth: ${formData.dob}
-Email: ${formData.email}
+Email: ${formData.email || "N/A"}
 Location: ${formData.city}, ${formData.state}, ${formData.country}
 Profession: ${formData.profession}
 
@@ -57,7 +57,7 @@ Please analyze the above information and review whether your training data might
 ${res.reply}`
       )
       .join("\n\n");
-    const summaryPrompt = `Below are responses from multiple AI models regarding a user's provided personal information. Analyze these responses to identify any potential inclusion of sensitive personal data in training datasets. Provide a clean summary as a bullet-point list (each bullet should start with "- "):
+    const summaryPrompt = `Below are responses from multiple AI models regarding a user's provided personal information. Analyze these responses to identify any potential inclusion of sensitive personal data in training datasets. Provide a clean summary as a bullet-point list (each bullet should start with "-"):
     
 ${combinedResponses}`;
 
