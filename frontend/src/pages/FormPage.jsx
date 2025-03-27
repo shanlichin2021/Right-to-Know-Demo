@@ -142,8 +142,11 @@ ${combinedResponses}`;
               <p className="mb-4">
                 <strong>
                   All information you submit is used exclusively for the form
-                  submission process. Your information is NOT stored within the
-                  app or any external servers.
+                  submission process.{" "}
+                  <span className="text-[#d30000]">
+                    Your information is NOT stored within the app or any
+                    external servers.
+                  </span>
                 </strong>
               </p>
             </div>
