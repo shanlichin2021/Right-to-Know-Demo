@@ -120,13 +120,13 @@ ${combinedResponses}`;
   };
 
   return (
-    <div className="min-h-screen bg-[#030712] text-white p-8 mt-8">
+    <div className="min-h-screen bg-[#030712] text-white p-8">
       {/* Two-column layout with a vertical divider */}
       <div className="flex flex-col md:flex-row">
         {/* LEFT COLUMN */}
         <div className="md:w-1/2 pr-8 border-r border-[#17264b]">
           <div className="p-8 rounded-[5px] shadow-md">
-            <div className="bg-[#070c19] border border-[#17264b] p-6 rounded-[6px] mb-6">
+            <div className="bg-[#070c19] mt-8 border border-[#17264b] p-6 rounded-[6px] mb-6">
               <p className="mb-4">
                 The goal of this project is to be a stepping stone towards
                 ensuring AI transparency.
@@ -291,7 +291,7 @@ ${combinedResponses}`;
         </div>
 
         {/* RIGHT COLUMN */}
-        <div className="md:w-1/2 pl-8">
+        <div className="md:w-1/2 pl-8 mt-10">
           <div className="p-8 rounded-[5px] shadow-md flex items-center justify-center">
             {loading ? (
               <div className="flex flex-col items-center">

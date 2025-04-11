@@ -6,9 +6,9 @@ export const ModelEndpointProvider = ({ children }) => {
   const [endpoints] = useState([
     {
       id: 1,
-      name: "llava",
+      name: "microsoft/phi-4",
       url: "https://cot6930-ollama-serve.kub.hpc.fau.edu/api/generate",
-      model: "llava",
+      model: "microsoft/phi-4",
     },
 
     {
@@ -20,9 +20,9 @@ export const ModelEndpointProvider = ({ children }) => {
 
     {
       id: 3,
-      name: "codestral",
+      name: "gemini-2.0-flash",
       url: "https://cot6930-ollama-serve.kub.hpc.fau.edu/api/generate",
-      model: "codestral",
+      model: "gemini-2.0-flash",
     },
   ]);
   const [selectedEndpointId, setSelectedEndpointId] = useState(1);
